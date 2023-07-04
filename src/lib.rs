@@ -149,54 +149,24 @@ mod tests {
     fn test_histo() {
         use std::time::Instant;
         let now = Instant::now();
-        //   let mut file =
-        //       File::open(r"D:\RSI\StarCitizen\LIVE\Bin64\FTI\Models\CIG_FOIP - Copy.imbin").unwrap();
         let mut file = File::open(r"D:\RSI\StarCitizen\LIVE\Data.p4k").unwrap();
         let size = 1000000000;
         let _histo = file.histo::<u32>(0, size);
         let elapsed = now.elapsed();
         println!("Indexed and mapped bytes: {}", size);
         println!("Elapsed: {:.2?}", elapsed);
-        //   println!("Array data {:?}", histo.as_ref());
-        //   let size = mem::size_of_val(histo.as_ref().unwrap());
-        //   println!("Array length {}", histo.as_ref().unwrap().len());
-        //   println!("The array using generic types occupies {} bytes", size);
     }
 
     #[test]
     fn test_histo_delta() {
         use std::time::Instant;
         let now = Instant::now();
-        //   let mut file =
-        //       File::open(r"D:\RSI\StarCitizen\LIVE\Bin64\FTI\Models\CIG_FOIP - Copy.imbin").unwrap();
         let mut file = File::open(r"D:\RSI\StarCitizen\LIVE\Data.p4k").unwrap();
         let size = 1000000000;
-        let _histo = file.histo_delta::<u32>(0, size, size);
+        let data_scope = 1000;
+        let _histo = file.histo_delta::<u32>(0, size, data_scope);
         let elapsed = now.elapsed();
-        println!("Indexed and mapped bytes: {}", size);
+        println!("Indexed and mapped {} bytes with chunk accuracy of {}", size, data_scope);
         println!("Elapsed: {:.2?}", elapsed);
-
-        //   println!("Array data {:?}", histo.as_ref());
-        //   let size = mem::size_of_val(histo.as_ref().unwrap());
-        //   println!("Array length {}", histo.as_ref().unwrap().iter().len());
-        //   println!("The array using generic types occupies {} bytes", size);
     }
-
-    //  #[test]
-    //  fn test_patter_matching() {
-    //      use std::time::Instant;
-    //      let now = Instant::now();
-    //      let mut file =
-    //          File::open(r"D:\RSI\StarCitizen\LIVE\Bin64\FTI\Models\CIG_FOIP - Copy.imbin").unwrap();
-    //    //   let mut file = File::open(r"D:\RSI\StarCitizen\LIVE\Data.p4k").unwrap();
-    //      let size = 1000;
-    //      let matches = file.pattern_match(0,5,"IMBIN");
-    //      let elapsed = now.elapsed();
-    //      println!("Elapsed: {:.2?}", elapsed);
-
-    //       //   println!("Array data {:?}", histo.as_ref());
-    //    //   let size = mem::size_of_val(histo.as_ref().unwrap());
-    //    //   println!("Array length {}", histo.as_ref().unwrap().iter().len());
-    //    //   println!("The array using generic types occupies {} bytes", size);
-    //  }
 }
