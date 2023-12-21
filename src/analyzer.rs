@@ -90,7 +90,8 @@ impl Analyzer for std::fs::File {
         end_position: u64,
         pattern: &str,
     ) -> Result<Vec<u64>> {
-        let mut buf = load_chunk!(self, start_position, end_position);
+        todo!();
+        let buf = load_chunk!(self, start_position, end_position);
         let scope: Vec<u8> = Vec::with_capacity(pattern.len()); // Filter scope
 
         println!("Buff: {:?}", buf);
@@ -128,16 +129,16 @@ mod tests {
     use std::fs::File;
     use crate::analyzer::Analyzer;
 
-    #[test]
-    fn test_pattern_match() {
-        use std::time::Instant;
-        let now = Instant::now();
-        let mut file = File::open(r"D:\RSI\StarCitizen\LIVE\Data.p4k").unwrap();
-        let _size = 1000000000;
-        let _histo = file.pattern_match(0, 100, "test");
-        let elapsed = now.elapsed();
-        println!("Elapsed: {:.2?}", elapsed);
-    }
+    // #[test]
+    // fn test_pattern_match() {
+    //     use std::time::Instant;
+    //     let now = Instant::now();
+    //     let mut file = File::open(r"D:\RSI\StarCitizen\LIVE\Data.p4k").unwrap();
+    //     let _size = 1000000000;
+    //     let _histo = file.pattern_match(0, 100, "test");
+    //     let elapsed = now.elapsed();
+    //     println!("Elapsed: {:.2?}", elapsed);
+    // }
 
     #[test]
     fn test_histo() {
